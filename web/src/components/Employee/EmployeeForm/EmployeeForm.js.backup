@@ -1,0 +1,238 @@
+import {
+  Form,
+  FormError,
+  FieldError,
+  Label,
+  TextField,
+  DatetimeLocalField,
+  CheckboxField,
+  NumberField,
+  Submit,
+} from '@redwoodjs/forms'
+
+import { LabelGen } from 'src/components/LabelGen' 
+
+
+const formatDatetime = (value) => {
+  if (value) {
+    return value.replace(/:\d{2}\.\d{3}\w/, '')
+  }
+}
+
+const EmployeeForm = (props) => {
+  const onSubmit = (data) => {
+    props.onSave(data, props?.employee?.id)
+  }
+
+  return (
+    <div className="rw-form-wrapper">
+      <Form onSubmit={onSubmit} error={props.error}>
+        <FormError
+          error={props.error}
+          wrapperClassName="rw-form-error-wrapper"
+          titleClassName="rw-form-error-title"
+          listClassName="rw-form-error-list"
+        />
+
+        <Label
+          name="fName"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          First name
+        </Label>
+
+        <TextField
+          name="fName"
+          defaultValue={props.employee?.fName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="fName" className="rw-field-error" />
+
+        <Label
+          name="mi"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Mi
+        </Label>
+
+        <TextField
+          name="mi"
+          defaultValue={props.employee?.mi}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="mi" className="rw-field-error" />
+
+        <Label
+          name="lName"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          L name
+        </Label>
+
+        <TextField
+          name="lName"
+          defaultValue={props.employee?.lName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="lName" className="rw-field-error" />
+
+        <Label
+          name="cName"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          C name
+        </Label>
+
+        <TextField
+          name="cName"
+          defaultValue={props.employee?.cName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="cName" className="rw-field-error" />
+
+        <Label
+          name="dob"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Dob
+        </Label>
+
+        <DatetimeLocalField
+          name="dob"
+          defaultValue={formatDatetime(props.employee?.dob)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="dob" className="rw-field-error" />
+
+        <Label
+          name="active"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Active
+        </Label>
+
+        <CheckboxField
+          name="active"
+          defaultChecked={props.employee?.active}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="active" className="rw-field-error" />
+
+        <Label
+          name="phoneNumber"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Phone number
+        </Label>
+
+        <TextField
+          name="phoneNumber"
+          defaultValue={props.employee?.phoneNumber}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="phoneNumber" className="rw-field-error" />
+
+        <Label
+          name="isManager"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Is manager
+        </Label>
+
+        <CheckboxField
+          name="isManager"
+          defaultChecked={props.employee?.isManager}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="isManager" className="rw-field-error" />
+
+        <Label
+          name="bio"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Bio
+        </Label>
+
+        <TextField
+          name="bio"
+          defaultValue={props.employee?.bio}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="bio" className="rw-field-error" />
+
+        <Label
+          name="worksSince"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Works since
+        </Label>
+
+        <DatetimeLocalField
+          name="worksSince"
+          defaultValue={formatDatetime(props.employee?.worksSince)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="worksSince" className="rw-field-error" />
+
+        <Label
+          name="officeId"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Office id
+        </Label>
+
+        <NumberField
+          name="officeId"
+          defaultValue={props.employee?.officeId}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="officeId" className="rw-field-error" />
+
+        <div className="rw-button-group">
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+            Save
+          </Submit>
+        </div>
+      </Form>
+    </div>
+  )
+}
+
+export default EmployeeForm

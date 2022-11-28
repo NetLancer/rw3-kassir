@@ -1,18 +1,21 @@
 import { Link, routes } from '@redwoodjs/router'
-import { useAuth } from '@redwoodjs/auth'
+import { useAuth } from '@redwoodjs/auth' 
+import { Toaster } from '@redwoodjs/web/toast'
+
 
 const BlogLayout = ({ children }) => {
   const { logIn, logOut, isAuthenticated, currentUser } = useAuth()
 
   return (
     <>
+      <Toaster />
       <header className="relative flex justify-between items-center py-4 px-8 bg-blue-700 text-white">
         <h1 className="text-5xl font-semibold tracking-tight">
           <Link
             className="text-blue-400 hover:text-blue-100 transition duration-100"
             to={routes.home()}
           >
-            Redwood Blog
+            Redwood Dummy Blog
           </Link>
         </h1>
         <nav>
@@ -26,16 +29,11 @@ const BlogLayout = ({ children }) => {
               </Link>
             </li>
             <li>
-              <Link
-                className="py-2 px-4 hover:bg-blue-600 transition duration-100 rounded"
-                to={routes.contact()}
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
               {isAuthenticated ? (
-                <div>
+                <div> 
+                  {' '}
+                  <span>{currentUser && `| ${currentUser.id} | ${currentUser.email} | ${currentUser.roles}`}</span> 
+                  {' '}
                   <button type="button" onClick={logOut} className="py-2 px-4">
                     Logout
                   </button>

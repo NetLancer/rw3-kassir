@@ -1,0 +1,107 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = "native"
+}
+
+model User {
+  id                  Int @id @default(autoincrement())
+  name                String?
+  email               String @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime? 
+  roles               String @default("kassir")
+} 
+
+
+model Employee {
+  id              Int @id @default(autoincrement()) 
+  fName           String 
+  mi              String? 
+  lName           String 
+  cName           String? @unique 
+  dob             DateTime 
+  active          Boolean @default(true) 
+  phoneNumber     String @unique
+  isManager       Boolean? 
+  bio             String? 
+  worksSince      DateTime? 
+  officeAttached  Office? @relation("EmployeesList", fields: [officeId], references: [id]) 
+  officeId        Int? 
+  managingOffice  Office? @relation("EmployeeManager") 
+  salesRec        SaleRec[] 
+  comment		  String? @default("")
+} 
+
+model Office {
+  id                    Int @id @default(autoincrement()) 
+  region                String 
+  address               String 
+  cName                 String? @unique 
+  active          		Boolean @default(true)
+  manager               Employee? @relation("EmployeeManager", fields: [managerId], references: [id]) 
+  managerId             Int? @unique
+  staffNum              Int? 
+  employees             Employee[] @relation("EmployeesList") 
+  salesRec              SaleRec[] 
+  comment				String? @default("")
+}
+
+// ..example: title   String @db.VarChar(200)
+
+////////////////////////////////////////
+
+model AirCarrier { 
+  id          	Int @id @default(autoincrement())
+  name        	String? @unique
+  codeName    	String @unique 
+  active        Boolean @default(true)
+  docNumber   	String 
+  consolidators Consolidator[]
+  info        	String?
+  salesRec    	SaleRec[]
+}
+
+
+model Consolidator {
+  id        Int @id @default(autoincrement()) 
+  region    String 
+  address   String 
+  cName 	String? @unique
+  name      String 
+  active    Boolean @default(true)
+  info      String? 
+  carriers  AirCarrier[] 
+  salesRec  SaleRec[] 
+  comment	String? @default("")
+}
+
+
+model SaleRec {
+  id            Int @id @default(autoincrement()) 
+  date          DateTime @default(now()) 
+  office        Office @relation(fields: [officeId], references: [id], onDelete: Restrict, onUpdate: Restrict) 
+  officeId    	Int
+  agent         Employee @relation(fields: [employeeId], references: [id], onDelete: Restrict, onUpdate: Restrict) 
+  employeeId  	Int
+  consolidator  Consolidator @relation(fields: [consId], references: [id], onDelete: Restrict, onUpdate: Restrict) 
+  consId    	Int
+  carrier       AirCarrier @relation(fields: [carrierId], references: [id], onDelete: Restrict, onUpdate: Restrict) 
+  carrierId   	Int
+  ticketNo      String?
+  from          String 
+  to            String 
+  fare          Float 
+  tax1          Float? 
+  tax2          Float? 
+  tax3          Float? 
+  curAgent		Int?
+}
+
+// curAgent -- currently logged in

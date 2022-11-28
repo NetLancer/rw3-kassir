@@ -7,7 +7,7 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "3.0.1"
+    "@redwoodjs/core": "^3.4.0"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config"
@@ -19,5 +19,9 @@
   "prisma": {
     "seed": "yarn rw exec seed"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "dependencies": {
+    "react-date-picker": "^9.0.0",
+    "reactjs-popup": "^2.0.5"
+  }
 }

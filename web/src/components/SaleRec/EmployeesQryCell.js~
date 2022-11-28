@@ -1,0 +1,37 @@
+import { SelectField } from '@redwoodjs/forms' 
+
+export const QUERY = gql`
+  query AllEmployeesQuery {
+    employees {
+      id
+      cName
+    }
+  }
+` 
+
+export const Loading = () => <p>Loading...</p>
+
+export const Empty = () => <p>Offices not found </p>
+
+export const Failure = ({ error }) => (
+  <div className="rw-cell-error">{error?.message}</div>
+)
+///////////////////
+export const Success = ({ offices }) => {
+  return (
+    <SelectField 
+      name="officeCode"
+      className="rw-input"
+    > 
+      {
+        offices.map((office) => {
+            return <option key={office.id}>{office.cName}</option> 
+          
+        })
+        
+      }
+    </SelectField>
+    
+  ) 
+}
+

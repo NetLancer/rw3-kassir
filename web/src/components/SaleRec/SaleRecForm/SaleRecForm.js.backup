@@ -1,0 +1,240 @@
+import {
+  Form,
+  FormError,
+  FieldError,
+  Label,
+  TextField, 
+  Submit,
+} from '@redwoodjs/forms'
+import DatePicker from 'react-date-picker' 
+import { useState } from 'react'
+
+const SaleRecForm = (props) => {
+  const onSubmit = (data) => { 
+    console.log(data)
+    props.onSave(data, props?.saleRec?.id)
+  } 
+  
+  const [dateValue, setDateValue] = useState(new Date())
+  
+  const onDateChange = (val) => {
+    setDateValue(val) 
+    console.log(val)
+  }
+  
+  //
+  return (
+    <div className="rw-form-wrapper">
+      <Form onSubmit={onSubmit} error={props.error}>
+        <FormError
+          error={props.error}
+          wrapperClassName="rw-form-error-wrapper"
+          titleClassName="rw-form-error-title"
+          listClassName="rw-form-error-list"
+        />
+
+        <DatePicker 
+          name="date" 
+          format={"dd-MM-y"}
+          onChange={onDateChange}
+          value={dateValue} 
+          className="rw-input"
+        /> 
+        
+        <Label
+          name="officeCode"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Office
+        </Label>
+        <TextField
+          name="officeCode"
+          defaultValue={props.saleRec?.officeCode}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="officeCode" className="rw-field-error" />
+
+        <Label
+          name="employeeName"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Employee name
+        </Label>
+        <TextField
+          name="employeeName"
+          defaultValue={props.saleRec?.employeeName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="employeeName" className="rw-field-error" />
+
+        <Label
+          name="consName"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Cons name
+        </Label>
+        <TextField
+          name="consName"
+          defaultValue={props.saleRec?.consName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="consName" className="rw-field-error" />
+
+        <Label
+          name="carrierCode"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Carrier code
+        </Label>
+        <TextField
+          name="carrierCode"
+          defaultValue={props.saleRec?.carrierCode}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="carrierCode" className="rw-field-error" />
+
+        <Label
+          name="ticketNo"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Ticket no
+        </Label>
+        <TextField
+          name="ticketNo"
+          defaultValue={props.saleRec?.ticketNo}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="ticketNo" className="rw-field-error" />
+
+        <Label
+          name="from"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          From
+        </Label>
+        <TextField
+          name="from"
+          defaultValue={props.saleRec?.from}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="from" className="rw-field-error" />
+
+        <Label
+          name="to"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          To
+        </Label>
+        <TextField
+          name="to"
+          defaultValue={props.saleRec?.to}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="to" className="rw-field-error" />
+
+        <Label
+          name="fare"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Fare
+        </Label>
+        <TextField
+          name="fare"
+          defaultValue={props.saleRec?.fare}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ valueAsNumber: true, required: true }}
+        />
+
+        <FieldError name="fare" className="rw-field-error" />
+
+        <Label
+          name="tax1"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Tax1
+        </Label>
+        <TextField
+          name="tax1"
+          defaultValue={props.saleRec?.tax1}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ valueAsNumber: true }}
+        />
+
+        <FieldError name="tax1" className="rw-field-error" />
+
+        <Label
+          name="tax2"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Tax2
+        </Label>
+        <TextField
+          name="tax2"
+          defaultValue={props.saleRec?.tax2}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ valueAsNumber: true }}
+        />
+
+        <FieldError name="tax2" className="rw-field-error" />
+
+        <Label
+          name="tax3"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Tax3
+        </Label>
+        <TextField
+          name="tax3"
+          defaultValue={props.saleRec?.tax3}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ valueAsNumber: true }}
+        />
+
+        <FieldError name="tax3" className="rw-field-error" />
+
+        <div className="rw-button-group">
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+            Save
+          </Submit>
+        </div>
+      </Form>
+    </div>
+  )
+}
+
+export default SaleRecForm

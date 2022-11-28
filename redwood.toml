@@ -12,6 +12,12 @@
 [api]
   port = 8911
 [browser]
-  open = true
+  open = true 
+  
 [experimental]
-  esbuild = false
+  esbuild = false 
+  
+
+[generate] 
+	tests = false 
+	stories = false

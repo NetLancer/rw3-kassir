@@ -1,0 +1,40 @@
+/*
+	Jonny added
+*/
+
+.inactive {
+	font-style: italic; 
+	background-color: #FFCCFF; 
+} 
+
+/* color: #CCCC99;*/ 
+/* prev bg-color: #FFCCCC */ 
+
+table tr.with-icons span {
+	font-size: 1.25rem; 
+	font-weight: 700;
+	color: #566D7E;
+} 
+
+table tr.with-icons th {
+	font-size: 0.75rem;
+	font-weight: normal; 
+	font-variant: small-caps;
+}
+
+table tr.checkboxes td {
+	padding-left: 1rem;
+} 
+
+#overlay {
+  position: fixed;
+  /* display: none; */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+ z-index: 5;
+}

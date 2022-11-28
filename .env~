@@ -1,0 +1,4 @@
+DATABASE_URL="mysql://root:3613779@localhost:3306/rw3tut_db"
+
+# Used to encrypt/decrypt session cookies. Change this value and re-deploy to log out all users of your app at once.
+SESSION_SECRET=Sd3BUGTBjtkERGGwHHtiECtKnugMyb2Zej4w8i55TfHPGnqj27xoBTT8xFRv2oHa
